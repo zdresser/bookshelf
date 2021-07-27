@@ -1,18 +1,46 @@
 var books = [];
+var index = 0; //add 10 each time the next button is used. subtract 10 for back button. Check to see if index is zero, in which case back button doesn't work.
 
 
-$('.search').on('click', function () {
-  var search = $('#search-query').val();
+//search
+$('.search').on('click', function () {   
+  var search = $('#search-query').val() +'&startIndex=' + index;
   
-  fetch(search);
- 
+  fetch(search); 
 });
 
+var checkPrev = function() {
+  if (index < 10) {
+    $('#prev10').hide();
+  } else {
+    $('#prev10').css('display', 'inline-block');
+  }
+};
+
+//load next 10 results
+$('#next10').on('click', function () {
+  index += 10;
+  var search = $('#search-query').val() +'&startIndex=' + index;
+  fetch(search);
+
+  checkPrev();
+});
+
+//load previous 10 results
+$('#prev10').on('click', function (){
+ index -= 10;
+
+ var search = $('#search-query').val() +'&startIndex=' + index;
+fetch(search);
+
+  checkPrev();
+})
+
+//show and hide the loading spinner/button/whatever I settle on
 $(document).on({
   ajaxStart: function(){
     $('.search').hide();
     $('#spin').show();
-
   },
   ajaxStop: function(){
     $('.search').show();
@@ -40,13 +68,16 @@ var addBooks = function(data) {
 };
 
 var fetch = function (query) {
+  //add start index
   $.ajax({
     method: "GET",
     url: "https://www.googleapis.com/books/v1/volumes?q=" + query,
     dataType: "json",
+    startIndex: index,
     success: function(data) {
       addBooks(data);
       $('#spinner').hide();
+      //show more results links/buttons
     },
     error: function(jqXHR, textStatus, errorThrown) {
       console.log(textStatus);

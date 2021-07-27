@@ -7,10 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   </head>
   <body>   
-    
+   
     <div id="data"></div>
 
     <div class="container-fluid">
@@ -31,11 +31,22 @@
 
           <button type="button" class="btn btn-primary search">
             <span class="button_text">Search</span></button>
+
+            <!-- <div  id="spin" role="status">
+              <img src="1496.gif" alt="loading" >
+            </div> -->
           <button class="btn btn-primary" id="spin" type="button" disabled>
-              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            <span class="sr-only">Loading...</span>
               Loading...
           </button>
           </form>
+          <!-- add next and back buttons or links -->
+          <div>
+            <a href="#" id="prev10">Previous 10</a>
+            <a href="#" id="next10">Next 10</a>
+           
+          </div>
         
           <hr/>
 
